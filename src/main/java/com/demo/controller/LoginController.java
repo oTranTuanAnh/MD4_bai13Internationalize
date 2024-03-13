@@ -11,5 +11,17 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class LoginController {
 
+    @GetMapping("/login")
+    public ModelAndView loginPage() {
+        ModelAndView modelAndView = new ModelAndView("/login");
+        modelAndView.addObject("user", new User());
+        return modelAndView;
+    }
 
+    @PostMapping("/doLogin")
+    public ModelAndView login(@ModelAttribute User user) {
+        ModelAndView modelAndView = new ModelAndView("/dashboard");
+        modelAndView.addObject("user", user);
+        return modelAndView;
+    }
 }
